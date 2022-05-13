@@ -1,0 +1,1976 @@
+swagger: "2.0"
+info:
+  description: "This is the REST diagram of Cirrus Spark API"
+  version: "1.0.0"
+  title: "Cirrus Spark"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "badobtech@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "cirrus-spark-backend-490.herokuapp.com"
+basePath: "/"
+tags:
+- name: "accounts"
+  description: "API for managing accounts"
+- name: "calls"
+  description: "API for managing calls"
+- name: "loghours"
+  description: "API for managing loghours"
+- name: "project"
+  description: "API for managing projects"
+- name: "tasks"
+  description: "API for managing tasks"
+- name: "events"
+  description: "API for managing events"
+- name: "auth"
+  description: "API for authorization"
+- name: "transaction"
+  description: "API for transaction"
+- name: "notification"
+  description: "API for notification"
+- name: "assigned"
+  description: "API for assigned"
+- name: "business"
+  description: "API for business"
+schemes:
+- "https"
+- "http"
+paths:
+  /accounts/employee:
+    post:
+      tags:
+      - "accounts"
+      summary: "Create new employee aaccount"
+      description: ""
+      operationId: "createEmployeeAccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Employee body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "201":
+          description: "Created"
+    get:
+      tags:
+      - "accounts"
+      summary: "Get existing employee account"
+      description: ""
+      operationId: "getEmployeeAccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "query"
+        description: "Email of employee to get"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /accounts/allEmployees:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get all employee accounts"
+      description: ""
+      operationId: "getAllEmployeeAccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "404":
+          description: "Not found"
+        "200":
+          description: "OK"
+  /accounts/allEmployees/{businessId}:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get all employee accounts by business id"
+      description: ""
+      operationId: "getAllEmployeeAccountByBusinessId"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "businessId"
+        in: "path"
+        description: "ID of business"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "404":
+          description: "Not found"
+        "200":
+          description: "OK"
+  /accounts/employee/{email}:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get existing employee account by email"
+      description: ""
+      operationId: "getEmployeeAccountByEmail"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email of employee"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "accounts"
+      summary: "Deletes an employee account by email"
+      description: ""
+      operationId: "deleteEmployeeAccount"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email of employee"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Account not found"
+        "200":
+          description: "OK"
+  /accounts/employee/project:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get employee account by project"
+      description: ""
+      operationId: "getAllEmployeeAccountsByProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projectId"
+        in: "query"
+        description: "id of project to fetch"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid Id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  
+  /accounts/client:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get existing employee account by email regex"
+      description: ""
+      operationId: "getClientAccountByEmailRegex"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "query"
+        description: "Email regex of employee to get"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    post:
+      tags:
+      - "accounts"
+      summary: "Create new client account"
+      description: ""
+      operationId: "createClientAccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Client body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "201":
+          description: "Created"
+  /accounts/business:
+    post:
+      tags:
+      - "accounts"
+      summary: "Create new business account"
+      description: ""
+      operationId: "createBusinessAccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Client body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "201":
+          description: "Created"
+    get:
+      tags:
+      - "accounts"
+      summary: "Get existing business account by email regex"
+      description: ""
+      operationId: "getBusinessAccountByEmailRegex"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "query"
+        description: "Email regex of business account to get"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /accounts/business/{email}:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get business account by email"
+      description: ""
+      operationId: "getBusinessAccountByEmail"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email of employee"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "accounts"
+      summary: "Deletes a business account by email"
+      description: ""
+      operationId: "deleteBusinessAccount"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email of employee"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Account not found"
+        "200":
+          description: "OK"
+  /accounts/client/{email}:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get client account by email"
+      description: ""
+      operationId: "getClientAccountByEmail"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email of client"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "accounts"
+      summary: "Deletes a client account by email"
+      description: ""
+      operationId: "deleteClientAccount"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email of client"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Account not found"
+        "200":
+          description: "OK"
+  /redux/accounts:
+    get:
+      tags:
+      - "accounts"
+      summary: "Get client account by email"
+      description: ""
+      operationId: "getAccountForRedux"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /project:
+    post:
+      tags:
+      - "project"
+      summary: "Create new project"
+      description: ""
+      operationId: "createProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Project body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    get:
+      tags:
+      - "project"
+      summary: "Get projects of a business"
+      description: ""
+      operationId: "getProjectsOfABusiness"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "businessId"
+        in: "query"
+        description: "Business ID of the business we are trying to get the projects from"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid businessId supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /project/booked:
+    get:
+      tags:
+      - "project"
+      summary: "Get booked projects of a business"
+      description: ""
+      operationId: "getBookedProjectOfBusiness"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "businessId"
+        in: "query"
+        description: "Business ID of the business we are trying to get the booked projects from"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid businessId supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /project/{id}:
+    get:
+      tags:
+      - "project"
+      summary: "Get project by id"
+      description: ""
+      operationId: "getProjectById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "project id"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "project"
+      summary: "Delete project by id"
+      description: ""
+      operationId: "deleteProjectById"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "project id"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Deleted"
+    put:
+      tags:
+      - "project"
+      summary: "Update project by id"
+      description: ""
+      operationId: "updateProjectById"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "project id"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Updated"
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: "Log into an account"
+      description: ""
+      operationId: "login"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Account body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /auth/logout:
+    delete:
+      tags:
+      - "auth"
+      summary: "Log out of an account"
+      description: ""
+      operationId: "logout"
+      parameters:
+      - name: "refreshToken"
+        in: "query"
+        description: "Refresh token of the account to logout"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid refresh token supplied"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /auth/refreshTokens:
+    post:
+      tags:
+      - "auth"
+      summary: "Generate new tokens"
+      description: ""
+      operationId: "refreshTokens"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Refresh token"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /call:
+    post:
+      tags:
+      - "calls"
+      summary: "Create new call"
+      description: ""
+      operationId: "createCall"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Call body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /calls:  
+    get:
+      tags:
+      - "calls"
+      summary: "Get calls related to a project"
+      description: ""
+      operationId: "getCalls"
+      produces:
+      - "application/json"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /calls/{callerEmail}:
+    get:
+      tags:
+      - "calls"
+      summary: "Get all calls associated to a caller email"
+      description: ""
+      operationId: "getCallsByCallerEmail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "callerEmail"
+        in: "path"
+        description: "Email of the caller"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /call/{callerId}:
+    get:
+      tags:
+      - "calls"
+      summary: "Get call by call id"
+      description: ""
+      operationId: "getCallById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "callerId"
+        in: "path"
+        description: "call id"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "calls"
+      summary: "Delete call by id"
+      description: ""
+      operationId: "deleteCallById"
+      parameters:
+      - name: "callerId"
+        in: "path"
+        description: "call id"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Deleted"
+    put:
+      tags:
+      - "calls"
+      summary: "Update call by id"
+      description: ""
+      operationId: "updateCallById"
+      parameters:
+      - name: "callerId"
+        in: "path"
+        description: "call id"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Updated"
+  /calls/search/phoneNumber:
+    get:
+      tags:
+      - "calls"
+      summary: "Get calls by a phone number regex"
+      description: ""
+      operationId: "getCallsByPhoneNumberRegex"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "phoneNumber"
+        in: "query"
+        description: "Regex of the phone number"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid phone number supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /calls/search/receiverName:
+    get:
+      tags:
+      - "calls"
+      summary: "Get calls by a receiver name regex"
+      description: ""
+      operationId: "getCallsByReceiverNameRegex"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "receiverName"
+        in: "query"
+        description: "Regex of the name of the receiver"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid name supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /calls/search/receiverEmail:
+    get:
+      tags:
+      - "calls"
+      summary: "Get calls by a receiver email regex"
+      description: ""
+      operationId: "getCallsByReceiverEmailRegex"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "receiverEmail"
+        in: "query"
+        description: "Regex of the email of the receiver"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid receiver email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /calls/search/employeeEmail:
+    get:
+      tags:
+      - "calls"
+      summary: "Get calls by a employee (caller) email regex"
+      description: ""
+      operationId: "getCallsByEmployeeEmailRegex"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "employeeEmail"
+        in: "query"
+        description: "Regex of the email of the employee (caller)"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid caller email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /logHours:
+    post:
+      tags:
+      - "loghours"
+      summary: "Create log hour"
+      description: ""
+      operationId: "createLogHours"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Log hours body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "201":
+          description: "Created"
+    get:
+      tags:
+        - "loghours"
+      summary: "Gets all logged hours"
+      description: ""
+      operationId: "getAllBusinessPays"
+      produces:
+        - "application/json"
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /logHours/pays/{email}:
+    get:
+      tags:
+        - "loghours"
+      summary: "Get all pays belonging to {email}"
+      description: ""
+      operationId: "getAllByEmail"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "email"
+          in: "path"
+          description: "Employee email"
+          required: true
+          type: "string"
+      responses:
+        "400":
+          description: "Invalid employee email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /logHours/pay/{id}:
+    get:
+      tags:
+      - "loghours"
+      summary: "Get pay with {id}"
+      description: ""
+      operationId: "get"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Employee id"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid pay id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    put:
+      tags:
+      - "loghours"
+      summary: "Update pay with {id}"
+      description: ""
+      operationId: "put"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "pay id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated pay"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Invalid pay id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /logHours/pay/latest/{email}:
+    get:
+      tags:
+      - "loghours"
+      summary: "Get most recent pay belonging to {email}"
+      description: ""
+      operationId: "getLatestPay"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Employee email"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid employee email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /logHours/inputType/{email}:
+    get:
+      tags:
+      - "loghours"
+      summary: "Get hours input type belonging to {email}"
+      description: ""
+      operationId: "getEmployeeHoursInputType"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Employee email"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid employee email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    put:
+      tags:
+      - "loghours"
+      summary: "Updates hours by input type belonging to {email}"
+      description: ""
+      operationId: "updateEmployeeHoursInputType"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Employee email"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated hours by input type"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Invalid employee email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "loghours"
+      summary: "Deletes hours by input type belonging to {email}"
+      description: ""
+      operationId: "deleteEmployeeHoursInputType"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Employee email"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid employee email supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /task:
+    post:
+      tags:
+      - "tasks"
+      summary: "Creates task"
+      description: ""
+      operationId: "createTask"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created task object"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "201":
+          description: "Created"
+    get:
+      tags:
+      - "tasks"
+      summary: "Gets all tasks"
+      description: ""
+      operationId: "getAllTask"
+      produces:
+      - "application/json"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /task/{taskId}:
+    get:
+      tags:
+        - "tasks"
+      summary: "Gets specific task by {id}"
+      description: ""
+      operationId: "getTask"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "taskId"
+        in: "path"
+        description: "Task Id"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid task id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+    post:
+      tags:
+        - "tasks"
+      summary: "Updates specified task by {id}"
+      description: ""
+      operationId: "updateTask"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "taskId"
+        in: "path"
+        description: "Task Id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated task"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Invalid task id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Created"
+    delete:
+      tags:
+        - "tasks"
+      summary: "Deletes specified task by {taskId}"
+      description: ""
+      operationId: "deleteTask"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "taskId"
+        in: "path"
+        description: "Task Id"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid task id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /event:
+    get:
+      tags:
+        - "events"
+      summary: "Gets all events of the current user"
+      description: "Gets all events of the current user. This includes the events that the user is invited to and the event that the user created."
+      operationId: "getEvents"
+      produces:
+      - "application/json"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+    post:
+      tags:
+        - "events"
+      summary: "Create a new event"
+      description: "Current user can create a new event."
+      operationId: "createEvent"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created event object"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Request data is missing some values"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Created"
+  /event/{eventId}:
+    get:
+      tags:
+        - "events"
+      summary: "Gets a specific event"
+      description: "Gets a specific event."
+      operationId: "getEvent"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "Event Id"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+    put:
+      tags:
+       - "events"
+      summary: "Update a specific event"
+      description: "Update a specific event"
+      operationId: "updateEvent"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "Event Id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Update event object"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+    delete:
+      tags:
+        - "events"
+      summary: "Delete a specific event"
+      description: "Delete a specific event."
+      operationId: "deleteEvent"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "Event Id"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /event/{eventId}/accept:
+    post:
+      tags:
+        - "events"
+      summary: "Accept or Reject an event invitation"
+      description: "Accept or Reject an event invitation."
+      operationId: "acceptEvent"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "Event Id"
+        required: true
+        type: "string"
+      - name: "email"
+        in: "query"
+        description: "Email of the user accepting or rejecting the invitation."
+        required: true
+        type: "string"
+      - name: "accepted"
+        in: "query"
+        description: "Whether the user accepted or rejected the invitation."
+        required: true
+        type: "boolean"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Created"
+  /transactions/{transactionId}:    
+    delete:
+      tags:
+        - "transaction"
+      summary: "Delete a specific transaction"
+      description: "Delete a specific transaction."
+      operationId: "deleteTransaction"
+      parameters:
+      - name: "transactionId"
+        in: "path"
+        description: "Transaction Id"
+        required: true
+        type: "number"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  
+  /transactions/expenses:
+    post:
+      tags:
+      - "transaction"
+      summary: "Create new expense"
+      description: "create new expense"
+      operationId: "createTransactionExpense"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Expense body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    get:
+      tags:
+      - "transaction"
+      summary: "Get expenses of a project"
+      description: ""
+      operationId: "getAllExpensesForProjects"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projectId"
+        in: "query"
+        description: "projectId of the project we are trying to get the expenses from"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid projectId supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    put:
+      tags:
+       - "transaction"
+      summary: "Update a specific expense"
+      description: "Update a specific expense"
+      operationId: "updateTransactionExpense"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "new Expense body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /transactions/productions:
+    post:
+      tags:
+      - "transaction"
+      summary: "Create new production"
+      description: "create new production"
+      operationId: "createTransactionProduction"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "production body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    get:
+      tags:
+      - "transaction"
+      summary: "Get productions of a project"
+      description: ""
+      operationId: "getAllProductionsForProject"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "projectId"
+        in: "query"
+        description: "projectId of the project we are trying to get the productions from"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid projectId supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    put:
+      tags:
+       - "transaction"
+      summary: "Update a specific production"
+      description: "Update a specific production"
+      operationId: "updateTransactionProduction"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "new production body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /transactions/expense:
+    get:
+      tags:
+      - "transaction"
+      summary: "Get expense"
+      description: "get expense"
+      operationId: "getExpense"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "id of the expense we are trying to get"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /transactions/production:
+    get:
+      tags:
+      - "transaction"
+      summary: "Get production"
+      description: "get production"
+      operationId: "getProduction"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "id of the production we are trying to get"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /businessTransaction/productions:
+    get:
+      tags:
+      - "transaction"
+      summary: "Get productions of a specific Business"
+      description: "get productions of a specific Business"
+      operationId: "getAllProductionsForBusinessPerProject"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "businessId"
+        in: "query"
+        description: "id of the business we are trying to get productions from"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /businessTransaction/expenses:
+    get:
+      tags:
+      - "transaction"
+      summary: "Get expenses of a specific Business"
+      description: "get expenses of a specific Business"
+      operationId: "getAllExpensesForBusinessPerProject"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "businessId"
+        in: "query"
+        description: "id of the business we are trying to get expenses from"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /notifications:
+    get:
+      tags:
+      - "notification"
+      summary: "Get notifications for a user"
+      description: "get notifications for a user"
+      operationId: "notificationgetAllByEmail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "currentUser"
+        in: "query"
+        description: "current Logged in user"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid object supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /multipleAssgined:
+    post:
+      tags:
+      - "assigned"
+      summary: "Create new assgined"
+      description: "create new assgined"
+      operationId: "createMultipleAssignment"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "assgined body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /assignedByTaskId/{taskid}: 
+    get:
+      tags:
+      - "assigned"
+      summary: "Get single task assignment for a user"
+      description: "get single task assignment for a user"
+      operationId: "getAssignedsByTaskId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "taskid"
+        in: "path"
+        description: "get task assignment"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    put:
+      tags:
+       - "assigned"
+      summary: "Update a specific task assignment"
+      description: "Update a specific task assginment"
+      operationId: "updateAssignments"
+      parameters:
+      - name: "taskid"
+        in: "path"
+        description: "Task Id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated task assginment"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+    delete:
+      tags:
+        - "assigned"
+      summary: "Delete a specific task"
+      description: "Delete a specific task."
+      operationId: "deleteAllByTaskId"
+      parameters:
+      - name: "taskid"
+        in: "path"
+        description: "task Id"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /business:
+    post:
+      tags:
+      - "business"
+      summary: "Create new business"
+      description: "create new business"
+      operationId: "createBusiness"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "assgined body"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+  /business/{id}:
+    get:
+      tags:
+      - "business"
+      summary: "Get single business"
+      description: "get single business"
+      operationId: "getBusiness"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "business id"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+    put:
+      tags:
+       - "business"
+      summary: "Update a specific business"
+      description: "Update a specific business"
+      operationId: "updateBusiness"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "business Id"
+        required: true
+        type: "number"
+      - in: "body"
+        name: "body"
+        description: "Updated business"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+    delete:
+      tags:
+        - "business"
+      summary: "Delete a specific business"
+      description: "Delete a specific business."
+      operationId: "deleteBusiness"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "business id"
+        required: true
+        type: "number"
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"  
+  /business/password:
+    put:
+      tags:
+       - "business"
+      summary: "Update a specific business password"
+      description: "Update a specific business password"
+      operationId: "updatePassword"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Updated business password"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "Ok"
+  /businesses:
+    get:
+      tags:
+      - "business"
+      summary: "Get all businesses"
+      description: "get all business"
+      operationId: "getBusinesses"
+      produces:
+      - "application/json"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "Not found"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Unexpected error"
+        "200":
+          description: "OK"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"

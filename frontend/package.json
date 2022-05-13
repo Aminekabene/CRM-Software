@@ -1,0 +1,78 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.20.23",
+    "@types/react": "^16.14.15",
+    "@types/react-dom": "^16.9.14",
+    "@types/react-redux": "^7.1.18",
+    "axios": "^0.21.3",
+    "express": "^4.17.2",
+    "formik": "^2.2.9",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-big-calendar": "^0.39.0",
+    "react-dom": "^17.0.2",
+    "react-minimal-pie-chart": "^8.2.0",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-window": "^1.8.6",
+    "recharts": "^2.1.9",
+    "typescript": "^4.1.6",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "start-dev": "react-scripts start",
+    "start-test": "react-scripts -r @cypress/instrument-cra start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "cypress:test": "cypress run",
+    "cypress:open": "cypress open",
+    "prettier-check": "npx prettier --check src/**/*.{ts,tsx}",
+    "prettier-write": "npx prettier --write src/**/*.{ts,tsx}"
+  },
+  "nyc": {
+    "exclude": [
+      "src/components/Sidebar"
+    ],
+    "excludeAfterRemap": true
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.9.11",
+    "@types/react-big-calendar": "^0.36.2",
+    "@types/react-router-dom": "^5.3.2",
+    "@types/react-window": "^1.8.5",
+    "@types/yup": "^0.29.13",
+    "cypress": "^9.5.2",
+    "prettier": "2.4.1"
+  }
+}

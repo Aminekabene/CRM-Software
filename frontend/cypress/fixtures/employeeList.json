@@ -1,0 +1,16 @@
+[
+  {
+      "email": "carlos@carlos.com",
+      "account": {
+          "username": "carlos",
+          "email": "carlos@carlos.com"
+      }
+  },
+  {
+      "email": "employee@employee.com",
+      "account": {
+          "username": "employee",
+          "email": "employee@employee.com"
+      }
+  }
+]
