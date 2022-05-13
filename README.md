@@ -11,6 +11,7 @@ The project will be split into 4 different sections: Admins, business, employees
 ### Meet the team!
 | Name           | GitHub handle                                       | Student ID |
 | -------------- | --------------------------------------------------- | ---------- |
+| Amine Kabene   | [Aminekabene](https://github.com/Aminekabene)       | 40156333   |
 | Simon Lim      | [nasaku898](https://github.com/nasaku898)           | 40087893   |
 | Manraj Rai     | [Manraj45](https://github.com/Manraj45)             | 40084677   |
 | David Thai     | [davidthai0387](https://github.com/davidthai0387)   | 40097613   |
